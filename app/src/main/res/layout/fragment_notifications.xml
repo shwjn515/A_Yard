@@ -40,11 +40,12 @@
                     android:textColor="#ffffff"
                     android:textSize="20sp" />
 
-                <TextView
+                <Button
                     android:id="@+id/name"
+                    android:background="@color/blue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="156****8293"
+                    android:text=""
                     android:textColor="#ffffff"
                     android:textSize="20sp" />
 

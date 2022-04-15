@@ -1,4 +1,4 @@
-package com.example.a_yard.ui;
+package com.example.a_yard;
 
 import android.app.Activity;
 import android.app.Dialog;
