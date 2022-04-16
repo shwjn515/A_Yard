@@ -13,13 +13,16 @@
             android:layout_width="30dp"
             android:layout_height="10dp">
         </TextView>
-        <Button
+        <ImageButton
+            android:id="@+id/btn_lightmenubutton"
             android:layout_width="30dp"
             android:layout_height="40dp"
             android:paddingLeft="5dp"
+            android:background="@color/blue"
             android:layout_marginBottom="10dp"
-            android:background="@drawable/lightmenu">
-        </Button>
+            android:src="@drawable/lightmenu"
+            android:scaleType="centerInside">
+        </ImageButton>
     </LinearLayout>
     <TextView
         android:layout_width="90dp"
