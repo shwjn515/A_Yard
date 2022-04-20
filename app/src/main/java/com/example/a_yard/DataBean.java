@@ -1,5 +1,6 @@
 package com.example.a_yard;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -9,7 +10,8 @@ public class DataBean {
     public String imageUrl;
     public String title;
     public int viewType;
-    public static List<DataBean> images = new ArrayList();
+
+    public static ArrayList<DataBean> images = new ArrayList<DataBean>();
 
     public DataBean(Integer imageRes, String title, int viewType) {
         this.imageRes = imageRes;
