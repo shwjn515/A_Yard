@@ -146,10 +146,10 @@ public class HomeFragment extends Fragment {
 
     private ArrayList<String> getData() {
         ArrayList<String> data = new ArrayList<>();
-        data.add("精品大床房,102,12345678921,2022-04-10,198,已入住,https://img.alicdn.com/bao/uploaded/i2/1749466481/O1CN017xsaIs1xkLcR2RaCo_!!1749466481.jpg_300x300q90.jpg");
-        data.add("豪华双床房,106,,,166,空闲中,https://www.tokyo.grandnikko.com/cn/stay/executive/images/img_aut2.jpg");
-        data.add("豪华双床房,108,12345678922,20220410,166,已预定,https://www.gardenhotels.co.jp/images/kyobashi/room/deluxe-twin/deluxe-twin.jpg");
-        data.add("豪华双床房,109,12345678923,20220410,198,待打扫,https://www.hotelmonterey.co.jp/upload_file/monhim/stay/_D2A9652.JPG");
+        data.add("暑假特价房,102,12345678921,2022-04-09,60,已入住,https://img.alicdn.com/bao/uploaded/i2/1749466481/O1CN017xsaIs1xkLcR2RaCo_!!1749466481.jpg_300x300q90.jpg");
+        data.add("暑假出游套房,106,,,200,空闲中,https://www.tokyo.grandnikko.com/cn/stay/executive/images/img_aut2.jpg");
+        data.add("商务单间,108,12345678922,20220410,170,已预定,https://www.gardenhotels.co.jp/images/kyobashi/room/deluxe-twin/deluxe-twin.jpg");
+        data.add("普通标间,109,12345678923,20220410,180,待打扫,https://www.hotelmonterey.co.jp/upload_file/monhim/stay/_D2A9652.JPG");
         return data;
     }
 }

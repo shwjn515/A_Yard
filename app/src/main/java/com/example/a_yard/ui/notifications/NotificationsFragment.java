@@ -34,7 +34,7 @@ public class NotificationsFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), Login.class);
                 startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
-                //btn_name.setText("156****8293");
+                btn_name.setText("156****8293");
             }
         });
     }
