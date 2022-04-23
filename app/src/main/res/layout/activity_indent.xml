@@ -4,11 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.dashboard.DashboardFragment">
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/information_recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-        android:orientation="vertical"/>
+    tools:context=".ui.notifications.Indent">
+
 </androidx.constraintlayout.widget.ConstraintLayout>

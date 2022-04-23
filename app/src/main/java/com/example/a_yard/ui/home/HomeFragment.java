@@ -17,6 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -142,6 +143,8 @@ public class HomeFragment extends Fragment {
         mRecyclerView.setAdapter(mAdapter);
         //绘制间隔样式
         mRecyclerView.addItemDecoration(new MyDividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
+        // 设置Item添加和移除的动画
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
     }
 
     private ArrayList<String> getData() {

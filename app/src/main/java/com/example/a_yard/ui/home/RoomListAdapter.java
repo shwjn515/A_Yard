@@ -66,7 +66,7 @@ public class RoomListAdapter extends RecyclerView.Adapter<RoomListAdapter.ViewHo
     }
     @Override
     public int getItemCount() {
-        return mData == null ? 1 : mData.size();
+        return mData == null ? 0 : mData.size();
     }
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView roomname;
