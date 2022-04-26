@@ -7,16 +7,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.a_yard.Login;
 import com.example.a_yard.MainActivity;
+import com.example.a_yard.Photo;
 import com.example.a_yard.R;
 
 public class NotificationsFragment extends Fragment {
     private Button btn_name;
+    private ImageButton btn_phpto;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -35,6 +38,14 @@ public class NotificationsFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), Login.class);
                 startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
                 btn_name.setText("156****8293");
+            }
+        });
+        btn_phpto=(ImageButton) getActivity().findViewById(R.id.myphoto);
+        btn_phpto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), Photo.class);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
             }
         });
     }
