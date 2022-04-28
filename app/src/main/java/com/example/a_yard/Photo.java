@@ -28,6 +28,8 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.core.os.EnvironmentCompat;
 
+import com.example.a_yard.ui.notifications.NotificationsFragment;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -129,9 +131,11 @@ public class Photo extends AppCompatActivity {
                 if (isAndroidQ) {
                     // Android 10 使用图片uri加载
                     ivCamera.setImageURI(mCameraUri);
+                    NotificationsFragment.btn_phpto.setImageURI(mCameraUri);
                 } else {
                     // 使用图片路径加载
                     ivCamera.setImageBitmap(BitmapFactory.decodeFile(mCameraImagePath));
+                    NotificationsFragment.btn_phpto.setImageBitmap(BitmapFactory.decodeFile(mCameraImagePath));
                 }
             } else {
                 Toast.makeText(this,"取消",Toast.LENGTH_LONG).show();
@@ -144,6 +148,7 @@ public class Photo extends AppCompatActivity {
             // 获取图库所选图片的uri
             Uri uri = data.getData();
             ivCamera.setImageURI(uri);
+            NotificationsFragment.btn_phpto.setImageURI(uri);
         }
     }
 
@@ -172,6 +177,7 @@ public class Photo extends AppCompatActivity {
     /**
      * 调起相机拍照
      */
+    @SuppressWarnings("deprecation")
     private void openCamera() {
         Intent captureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // 判断是否有相机
@@ -205,6 +211,7 @@ public class Photo extends AppCompatActivity {
                 captureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
                 captureIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
                 startActivityForResult(captureIntent, CAMERA_REQUEST_CODE);
+
             }
         }
     }
@@ -271,6 +278,7 @@ public class Photo extends AppCompatActivity {
     /**
      * 从图库选择图片
      */
+    @SuppressWarnings("deprecation")
     private void openAlbum(){
         // 创建Intent，用于打开手机本地图库选择图片
         Intent intent1 = new Intent(Intent.ACTION_PICK,

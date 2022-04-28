@@ -3,12 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools">
     <!-- if you want to load images from the internet -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <!--  相机-->
-    <uses-permission android:name="android.permission.CAMERA" />
-    <!-- 存储权限-->
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 相机 -->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- 存储权限 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
 
     <application
         android:allowBackup="true"
@@ -20,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.A_Yard"
         tools:targetApi="31">
+        <activity
+            android:name="com.example.a_yard.ui.notifications.Person"
+            android:exported="false" />
         <activity
             android:name="com.example.a_yard.ui.notifications.Indent"
             android:exported="false" />

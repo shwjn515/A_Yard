@@ -22,6 +22,7 @@
         <entry key="..\:/Android-studio/A_Yard/app/src/main/res/layout/activity_main.xml" value="0.3423913043478261" />
         <entry key="..\:/Android-studio/A_Yard/app/src/main/res/layout/activity_msg.xml" value="0.39947916666666666" />
         <entry key="..\:/Android-studio/A_Yard/app/src/main/res/layout/classify.xml" value="0.3423913043478261" />
+        <entry key="..\:/Android-studio/A_Yard/app/src/main/res/layout/fingerprint.xml" value="0.3848958333333333" />
         <entry key="..\:/Android-studio/A_Yard/app/src/main/res/layout/fragment_dashboard.xml" value="0.358695652173913" />
         <entry key="..\:/Android-studio/A_Yard/app/src/main/res/layout/fragment_home.xml" value="0.358695652173913" />
         <entry key="..\:/Android-studio/A_Yard/app/src/main/res/layout/fragment_notifications.xml" value="0.358695652173913" />
@@ -32,6 +33,8 @@
         <entry key="..\:/Android-studio/A_Yard/app/src/main/res/layout/listviewlayout.xml" value="0.3848958333333333" />
         <entry key="..\:/Android-studio/A_Yard/app/src/main/res/layout/login.xml" value="0.39947916666666666" />
         <entry key="..\:/Android-studio/A_Yard/app/src/main/res/layout/navigationview_header.xml" value="0.36626506024096384" />
+        <entry key="..\:/Android-studio/A_Yard/app/src/main/res/layout/person.xml" value="0.3125" />
+        <entry key="..\:/Android-studio/A_Yard/app/src/main/res/layout/personlist.xml" value="0.3848958333333333" />
         <entry key="..\:/Android-studio/A_Yard/app/src/main/res/layout/photo.xml" value="0.3848958333333333" />
         <entry key="..\:/Android-studio/A_Yard/app/src/main/res/layout/register.xml" value="0.39947916666666666" />
         <entry key="..\:/Android-studio/A_Yard/app/src/main/res/layout/room.xml" value="0.3848958333333333" />

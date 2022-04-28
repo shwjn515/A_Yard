@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-//        //给navigation对象添加项目选择监视器，根据点击的项目不同，所显示的消息不同
+//        //给navigation抽屉对象添加项目选择监视器，根据点击的项目不同，所显示的消息不同
 //        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
 //            @Override
 //            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
