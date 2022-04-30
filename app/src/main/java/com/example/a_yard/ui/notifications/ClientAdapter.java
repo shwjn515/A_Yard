@@ -1,22 +1,19 @@
 package com.example.a_yard.ui.notifications;
 
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.a_yard.R;
-import com.example.a_yard.ui.dashboard.MyAdapter;
-
 import java.util.ArrayList;
 
-public class IndentAdapter extends RecyclerView.Adapter<IndentAdapter.ViewHolder>{
+public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ViewHolder>{
 
     private ArrayList<String> mData;
     private OnItemClickListener onItemClickListener;
-    public  IndentAdapter(ArrayList<String> data) {
+    public ClientAdapter(ArrayList<String> data) {
         this.mData = data;
     }
 
@@ -28,7 +25,7 @@ public class IndentAdapter extends RecyclerView.Adapter<IndentAdapter.ViewHolder
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // 实例化展示的view
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.indentlist, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.clientlist, parent, false);
         // 实例化viewholder
         ViewHolder viewHolder = new ViewHolder(v);
         return viewHolder;
@@ -58,12 +55,10 @@ public class IndentAdapter extends RecyclerView.Adapter<IndentAdapter.ViewHolder
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         // 按逗号分隔
-        String[] arr = mData.get(position).split(",", 4);
+        String[] arr2 = mData.get(position).split(",", 2);
         // 绑定数据
-        holder.indent2_id.setText(arr[0]);
-        holder.indent2_time.setText(arr[1]);
-        holder.indent2_price.setText(arr[2]);
-        holder.indent2_person.setText(arr[3]);
+        holder.client2_name.setText(arr2[0]);
+        holder.client2_phone.setText(arr2[1]);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
@@ -91,7 +86,7 @@ public class IndentAdapter extends RecyclerView.Adapter<IndentAdapter.ViewHolder
      *
      * @param listener
      */
-    public void setOnItemClickListener(IndentAdapter.OnItemClickListener listener) {
+    public void setOnItemClickListener(ClientAdapter.OnItemClickListener listener) {
         this.onItemClickListener = (OnItemClickListener) listener;
     }
     public interface OnItemClickListener {
@@ -106,17 +101,13 @@ public class IndentAdapter extends RecyclerView.Adapter<IndentAdapter.ViewHolder
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView indent2_id;
-        TextView indent2_time;
-        TextView indent2_price;
-        TextView indent2_person;
+        TextView client2_name;
+        TextView client2_phone;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            indent2_id = (TextView) itemView.findViewById(R.id.indent2_id);
-            indent2_time = (TextView) itemView.findViewById(R.id.indent2_time);
-            indent2_price = (TextView) itemView.findViewById(R.id.indent2_price);
-            indent2_person = (TextView) itemView.findViewById(R.id.indent2_person);
+            client2_name= (TextView) itemView.findViewById(R.id.client2_name);
+            client2_phone = (TextView) itemView.findViewById(R.id.client2_phone);
         }
     }
 }

@@ -41,11 +41,11 @@ import com.example.a_yard.Photo;
 import com.example.a_yard.R;
 
 public class NotificationsFragment extends Fragment {
-    private Button btn_name,btn_person,btn_indent;
+    private Button btn_name,btn_person,btn_indent,btn_client;
     public static ImageButton btn_phpto;
     private static final String DEFAULT_KEY_NAME = "default_key";
-
-    KeyStore keyStore;
+    public static boolean successful = false;
+    private KeyStore keyStore;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -56,7 +56,6 @@ public class NotificationsFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-
         btn_name=(Button) getActivity().findViewById(R.id.name);
         btn_name.setText("点击登录");
         btn_name.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +88,16 @@ public class NotificationsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), Indent.class);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
+
+            }
+        });
+        //顾客管理
+        btn_client=(Button) getActivity().findViewById(R.id.btn_client);
+        btn_client.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), Client.class);
                 startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
             }
         });
@@ -129,10 +138,9 @@ public class NotificationsFragment extends Fragment {
                 @Override
                 public void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult result) {
                     super.onAuthenticationSucceeded(result);
-
-                    //Log.i(TAG, "onAuthenticationSucceeded " + result.toString());
                     Intent intent = new Intent(getActivity(), Person.class);
                     startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
+                    //Log.i(TAG, "onAuthenticationSucceeded " + result.toString());
                 }
 
                 @Override
@@ -144,29 +152,5 @@ public class NotificationsFragment extends Fragment {
             biometricPrompt.authenticate(cancellationSignal, getActivity().getMainExecutor(), mAuthenticationCallback);
         }
         return true;
-    }
-
-    @TargetApi(23)
-    private void initKey() {
-        try {
-            keyStore = KeyStore.getInstance("AndroidKeyStore");
-            keyStore.load(null);
-            KeyGenerator keyGenerator = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES, "AndroidKeyStore");
-            KeyGenParameterSpec.Builder builder = new KeyGenParameterSpec.Builder(DEFAULT_KEY_NAME,
-                    KeyProperties.PURPOSE_ENCRYPT |
-                            KeyProperties.PURPOSE_DECRYPT)
-                    .setBlockModes(KeyProperties.BLOCK_MODE_CBC)
-                    .setUserAuthenticationRequired(true)
-                    .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_PKCS7);
-            keyGenerator.init(builder.build());
-            keyGenerator.generateKey();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void onAuthenticated() {
-        Intent intent = new Intent(getActivity(), Person.class);
-        startActivity(intent);
     }
 }

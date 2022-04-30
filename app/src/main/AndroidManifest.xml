@@ -19,6 +19,9 @@
         android:theme="@style/Theme.A_Yard"
         tools:targetApi="31">
         <activity
+            android:name="com.example.a_yard.ui.notifications.Client"
+            android:exported="false" />
+        <activity
             android:name="com.example.a_yard.ui.notifications.Person"
             android:exported="false" />
         <activity

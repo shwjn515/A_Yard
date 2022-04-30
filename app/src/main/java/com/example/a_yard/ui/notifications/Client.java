@@ -2,12 +2,10 @@ package com.example.a_yard.ui.notifications;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.helper.widget.Carousel;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,14 +18,14 @@ import com.example.a_yard.ui.home.MyDividerItemDecoration;
 
 import java.util.ArrayList;
 
-public class Indent extends AppCompatActivity {
+public class Client extends AppCompatActivity {
     private RecyclerView mRecyclerView;
-    private IndentAdapter IAdapter;
+    private ClientAdapter IAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.indent);
+        setContentView(R.layout.client);
         StatusBarUtils.setWindowStatusBarColor(this,R.color.blue);
         ActionBar actionBar = getSupportActionBar();  // 获取ActionBar
         if (actionBar != null) {
@@ -35,11 +33,11 @@ public class Indent extends AppCompatActivity {
         }
         initData();
         initView();
-        IAdapter.setOnItemClickListener(new IndentAdapter.OnItemClickListener() {
+        IAdapter.setOnItemClickListener(new ClientAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 //点击事件
-                Toast.makeText(Indent.this,"click " + position + " item", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Client.this,"click " + position + " item", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -63,25 +61,25 @@ public class Indent extends AppCompatActivity {
     }
     private void initData() {
         mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        IAdapter = new IndentAdapter(getData());
+        IAdapter = new ClientAdapter(getData());
     }
 
     private void initView() {
-        mRecyclerView = (RecyclerView) findViewById(R.id.indent_recyclerView);
+        mRecyclerView = (RecyclerView) findViewById(R.id.client_recyclerView);
         // 设置布局管理器
         mRecyclerView.setLayoutManager(mLayoutManager);
         // 设置adapter
         mRecyclerView.setAdapter(IAdapter);
-        mRecyclerView.addItemDecoration(new MyDividerItemDecoration(Indent.this, LinearLayoutManager.VERTICAL));
+        mRecyclerView.addItemDecoration(new MyDividerItemDecoration(Client.this, LinearLayoutManager.VERTICAL));
         // 设置Item添加和移除的动画
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
     }
 
     private ArrayList<String> getData() {
         ArrayList<String> data = new ArrayList<>();
-        data.add("12345678921,2022-04-09,60,张三");
-        data.add("12345678922,20220410,170,李四");
-        data.add("12345678923,20220410,180,王五");
+        data.add("张三,15699998293");
+        data.add("李四,12345678989");
+        data.add("王五,15699999631");
         return data;
     }
 }
