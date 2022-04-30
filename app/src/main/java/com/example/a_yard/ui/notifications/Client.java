@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -38,7 +39,8 @@ public class Client extends AppCompatActivity {
             @Override
             public void onItemClick(View view, int position) {
                 //点击事件
-                Toast.makeText(Client.this,"click " + position + " item", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(Client.this, ClientDetailPage.class);
+                startActivity(intent);
             }
 
             @Override

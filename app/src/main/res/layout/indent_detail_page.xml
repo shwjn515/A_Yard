@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="10sp">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="订单号："
+        android:textColor="#666666"
+        android:textSize="23sp" />
+    <!--输入框-->
+    <EditText
+        android:id="@+id/userName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="12345678921"
+        android:textColor="@color/grey"
+        android:focusable="false"
+        android:longClickable="false"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="订单时间："
+        android:textSize="23sp"
+        android:textColor="#666666" />
+    <!--输入框：-->
+    <EditText
+        android:id="@+id/dasdasss"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="2022-04-08  12:28:36"
+        android:textColor="@color/grey"
+        android:focusable="false"
+        android:longClickable="false"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="入住时间："
+        android:textSize="23sp"
+        android:textColor="#666666" />
+    <!--输入框：-->
+    <EditText
+        android:id="@+id/userturename"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="2,022 年 04 月 09 日"
+        android:textColor="@color/grey"
+        android:focusable="false"
+        android:longClickable="false"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="离店时间："
+        android:textSize="23sp"
+        android:textColor="#666666" />
+    <!--输入框：-->
+    <EditText
+        android:id="@+id/dasdasd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="2,022 年 04 月 10 日"
+        android:textColor="@color/grey"
+        android:focusable="false"
+        android:longClickable="false"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="订单金额："
+        android:textSize="23sp"
+        android:textColor="#666666" />
+    <!--输入框：-->
+    <EditText
+        android:id="@+id/usertrueid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="60"
+        android:textColor="@color/grey"
+        android:focusable="false"
+        android:longClickable="false"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="房间号："
+        android:textSize="23sp"
+        android:textColor="#666666" />
+    <!--输入框：-->
+    <EditText
+        android:id="@+id/useraddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="102"
+        android:textColor="@color/grey"
+        android:focusable="false"
+        android:longClickable="false"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="入住人："
+        android:textSize="23sp"
+        android:textColor="#666666" />
+    <!--输入框：-->
+    <EditText
+        android:id="@+id/ddsdas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="张三,李四"
+        android:textColor="@color/grey"
+        android:focusable="false"
+        android:longClickable="false"/>
+
+    <LinearLayout
+        android:layout_width="240dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="70dp"
+            android:id="@+id/modification"
+            android:text="修 改"/>
+        <TextView
+            android:layout_width="40dp"
+            android:layout_height="match_parent"/>
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="70dp"
+            android:id="@+id/save"
+            android:text="保 存"/>
+    </LinearLayout>
+</LinearLayout>

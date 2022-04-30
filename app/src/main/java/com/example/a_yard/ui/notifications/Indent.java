@@ -40,7 +40,8 @@ public class Indent extends AppCompatActivity {
             @Override
             public void onItemClick(View view, int position) {
                 //点击事件
-
+                Intent intent = new Intent(Indent.this, IndentDetailPage.class);
+                startActivity(intent);
             }
 
             @Override
