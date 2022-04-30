@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.notifications.Bill">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="10sp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="账单查询"
+            android:textSize="20sp"
+            android:textColor="#00A2E8" />
+
+        <!-- 用户名：-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="请选择开始日期："
+            android:textColor="#666666"
+            android:textSize="23sp"
+            android:layout_marginTop="10sp"/>
+        <Button
+            android:id="@+id/start_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="23sp"
+            android:onClick="showTimePickerDialog" />
+        <!--密码：-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="请选择结束日期："
+            android:textSize="23sp"
+            android:textColor="#666666" />
+        <!--输入框：-->
+        <Button
+            android:id="@+id/end_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="23sp"
+            android:onClick="showTimePickerDialog" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"/>
+        <Button
+            android:id="@+id/Confirmthequery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="23sp"
+            android:gravity="center"
+            android:text="点击确认查询"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="当前时间段总收入："
+            android:textSize="23sp"
+            android:textColor="#666666" />
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center"
+            android:text="666000元"
+            android:textSize="58sp"
+            android:gravity="center"
+            android:focusable="false"
+            android:longClickable="false"
+            android:background="@drawable/shape_circle"/>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

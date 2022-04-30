@@ -26,6 +26,7 @@ public class Person extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();  // 获取ActionBar
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);  // 设置返回按钮
+            actionBar.setTitle("个人信息管理");
         }
         mbtn_modification = findViewById(R.id.modification);
         mbtn_save= findViewById(R.id.save);

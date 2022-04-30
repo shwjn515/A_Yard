@@ -41,7 +41,7 @@ import com.example.a_yard.Photo;
 import com.example.a_yard.R;
 
 public class NotificationsFragment extends Fragment {
-    private Button btn_name,btn_person,btn_indent,btn_client;
+    private Button btn_name,btn_person,btn_indent,btn_client,btn_bill;
     public static ImageButton btn_phpto;
     private static final String DEFAULT_KEY_NAME = "default_key";
     public static boolean successful = false;
@@ -80,6 +80,15 @@ public class NotificationsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 supportFingerprint();
+            }
+        });
+        //账单管理
+        btn_bill=(Button) getActivity().findViewById(R.id.btn_bill);
+        btn_bill.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), Bill.class);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
             }
         });
         //订单管理

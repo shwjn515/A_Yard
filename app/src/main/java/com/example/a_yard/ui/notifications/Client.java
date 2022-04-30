@@ -30,6 +30,7 @@ public class Client extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();  // 获取ActionBar
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);  // 设置返回按钮
+            actionBar.setTitle("顾客管理");
         }
         initData();
         initView();

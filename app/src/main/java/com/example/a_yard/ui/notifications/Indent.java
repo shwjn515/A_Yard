@@ -32,6 +32,7 @@ public class Indent extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();  // 获取ActionBar
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);  // 设置返回按钮
+            actionBar.setTitle("订单管理");
         }
         initData();
         initView();
@@ -39,7 +40,7 @@ public class Indent extends AppCompatActivity {
             @Override
             public void onItemClick(View view, int position) {
                 //点击事件
-                Toast.makeText(Indent.this,"click " + position + " item", Toast.LENGTH_SHORT).show();
+
             }
 
             @Override
