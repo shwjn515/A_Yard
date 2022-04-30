@@ -22,7 +22,7 @@ public class Person extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.person);
-        StatusBarUtils.setWindowStatusBarColor(this,R.color.black);
+        StatusBarUtils.setWindowStatusBarColor(this,R.color.blue);
         ActionBar actionBar = getSupportActionBar();  // 获取ActionBar
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);  // 设置返回按钮

@@ -5,5 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.notifications.Indent">
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/indent_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        android:orientation="vertical"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

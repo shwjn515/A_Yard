@@ -5,6 +5,7 @@ import static android.hardware.biometrics.BiometricManager.Authenticators.DEVICE
 
 import static androidx.fragment.app.FragmentManager.TAG;
 
+import android.annotation.SuppressLint;
 import android.app.ActivityOptions;
 import android.app.KeyguardManager;
 import android.content.DialogInterface;
@@ -40,7 +41,7 @@ import com.example.a_yard.Photo;
 import com.example.a_yard.R;
 
 public class NotificationsFragment extends Fragment {
-    private Button btn_name,btn_person;
+    private Button btn_name,btn_person,btn_indent;
     public static ImageButton btn_phpto;
     private static final String DEFAULT_KEY_NAME = "default_key";
 
@@ -82,7 +83,17 @@ public class NotificationsFragment extends Fragment {
                 supportFingerprint();
             }
         });
+        //订单管理
+        btn_indent=(Button) getActivity().findViewById(R.id.btn_indent);
+        btn_indent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), Indent.class);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
+            }
+        });
     }
+    @SuppressLint("MissingPermission")
     public boolean supportFingerprint() {
         if (Build.VERSION.SDK_INT < 23) {
             Toast.makeText(getActivity(), "您的系统版本过低，不支持指纹功能", Toast.LENGTH_SHORT).show();

@@ -21,6 +21,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
 
     private ArrayList<String> mData;
     private static ArrayList<String> data2 = new ArrayList<>();
+    private MyAdapter.OnItemClickListener onItemClickListener;
 
 
     public MyAdapter(ArrayList<String> data) {
@@ -93,9 +94,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
             mft = (ImageView) itemView.findViewById(R.id.friend_touxiang);
         }
     }
-    private MyAdapter.OnItemClickListener onItemClickListener;
-
-
     /**
      * 添加新的Item
      */
