@@ -18,9 +18,11 @@
         <entry key="..\:/Android-studio/A_Yard/app/src/main/res/drawable/textview_border.xml" value="0.368" />
         <entry key="..\:/Android-studio/A_Yard/app/src/main/res/layout-v28/navigationview_header.xml" value="0.35266821345707655" />
         <entry key="..\:/Android-studio/A_Yard/app/src/main/res/layout/activity_client.xml" value="0.3848958333333333" />
+        <entry key="..\:/Android-studio/A_Yard/app/src/main/res/layout/activity_house_owner.xml" value="0.3848958333333333" />
         <entry key="..\:/Android-studio/A_Yard/app/src/main/res/layout/activity_indent.xml" value="0.39947916666666666" />
         <entry key="..\:/Android-studio/A_Yard/app/src/main/res/layout/activity_main.xml" value="0.3423913043478261" />
         <entry key="..\:/Android-studio/A_Yard/app/src/main/res/layout/activity_msg.xml" value="0.39947916666666666" />
+        <entry key="..\:/Android-studio/A_Yard/app/src/main/res/layout/activity_room_list.xml" value="0.39947916666666666" />
         <entry key="..\:/Android-studio/A_Yard/app/src/main/res/layout/bill.xml" value="0.39947916666666666" />
         <entry key="..\:/Android-studio/A_Yard/app/src/main/res/layout/classify.xml" value="0.3423913043478261" />
         <entry key="..\:/Android-studio/A_Yard/app/src/main/res/layout/client.xml" value="0.39947916666666666" />
@@ -31,6 +33,8 @@
         <entry key="..\:/Android-studio/A_Yard/app/src/main/res/layout/fragment_home.xml" value="0.358695652173913" />
         <entry key="..\:/Android-studio/A_Yard/app/src/main/res/layout/fragment_notifications.xml" value="0.358695652173913" />
         <entry key="..\:/Android-studio/A_Yard/app/src/main/res/layout/homepage.xml" value="0.39947916666666666" />
+        <entry key="..\:/Android-studio/A_Yard/app/src/main/res/layout/house_owner.xml" value="0.39947916666666666" />
+        <entry key="..\:/Android-studio/A_Yard/app/src/main/res/layout/houseowner.xml" value="0.3848958333333333" />
         <entry key="..\:/Android-studio/A_Yard/app/src/main/res/layout/indent.xml" value="0.39947916666666666" />
         <entry key="..\:/Android-studio/A_Yard/app/src/main/res/layout/indent_detail_page.xml" value="0.39947916666666666" />
         <entry key="..\:/Android-studio/A_Yard/app/src/main/res/layout/indentlist.xml" value="0.3848958333333333" />

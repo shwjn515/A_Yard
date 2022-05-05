@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class Login extends Activity {
-    private Button mBtn_zhuce;
+    private Button mBtn_zhuce,mbtn_login;
     private Button mBtn_delete;
     private EditText eT_username;
     private EditText eT_password;
@@ -65,6 +65,15 @@ public class Login extends Activity {
                     eT_password.setInputType(128);//设置为显示密码
                 }
                 eT_password.setSelection(eT_password.getText().length());//设置光标的位置到末尾
+            }
+        });
+        mbtn_login=findViewById(R.id.btn_denglu);
+        mbtn_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Login.this,MainActivity.class);
+                startActivity(intent);
+                Login.this.finish();
             }
         });
     }

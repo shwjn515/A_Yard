@@ -57,7 +57,7 @@ public class NotificationsFragment extends Fragment {
     public void onStart() {
         super.onStart();
         btn_name=(Button) getActivity().findViewById(R.id.name);
-        btn_name.setText("点击登录");
+        btn_name.setText("156****8293");
         btn_name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -30,7 +30,7 @@ public class Classify extends Activity {
         mBtn_owner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Classify.this, com.example.a_yard.Login.class);
+                Intent intent = new Intent(Classify.this, HouseOwner.class);
                 startActivity(intent);
                 //动画切换效果，淡出淡入
                 overridePendingTransition(R.xml.actions,0);

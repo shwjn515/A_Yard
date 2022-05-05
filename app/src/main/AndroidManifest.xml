@@ -19,6 +19,12 @@
         android:theme="@style/Theme.A_Yard"
         tools:targetApi="31">
         <activity
+            android:name="com.example.a_yard.ui.home.RoomList"
+            android:exported="false" />
+        <activity
+            android:name="com.example.a_yard.HouseOwner"
+            android:exported="false" />
+        <activity
             android:name="com.example.a_yard.ui.notifications.IndentDetailPage"
             android:exported="false" />
         <activity

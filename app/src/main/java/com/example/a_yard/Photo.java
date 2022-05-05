@@ -38,8 +38,8 @@ import java.util.Locale;
 
 public class Photo extends AppCompatActivity {
 
-    private Button mbtn_choose_picture,mbtn_tuku;
-    private ImageView ivCamera;
+    private Button mbtn_choose_picture,mbtn_tuku,mbtn_photobaocun;
+    private static ImageView ivCamera;
     // 拍照的requestCode
     private static final int CAMERA_REQUEST_CODE = 0x00000010;
     // 申请相机权限的requestCode
@@ -48,7 +48,7 @@ public class Photo extends AppCompatActivity {
     /**
      * 用于保存拍照图片的uri
      */
-    private Uri mCameraUri;
+    public static Uri mCameraUri;
     /**
      * 用于保存图片的文件路径，Android 10以下使用图片路径访问图片
      */
@@ -93,6 +93,13 @@ public class Photo extends AppCompatActivity {
                 }
             }
         });
+        mbtn_photobaocun = (Button) findViewById(R.id.btn_photobaocun);
+        mbtn_photobaocun.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Photo.this.finish();
+            }
+        });
     }
     //返回
     @Override
@@ -131,11 +138,11 @@ public class Photo extends AppCompatActivity {
                 if (isAndroidQ) {
                     // Android 10 使用图片uri加载
                     ivCamera.setImageURI(mCameraUri);
-                    NotificationsFragment.btn_phpto.setImageURI(mCameraUri);
+                    //NotificationsFragment.btn_phpto.setImageURI(mCameraUri);
                 } else {
                     // 使用图片路径加载
                     ivCamera.setImageBitmap(BitmapFactory.decodeFile(mCameraImagePath));
-                    NotificationsFragment.btn_phpto.setImageBitmap(BitmapFactory.decodeFile(mCameraImagePath));
+                    //NotificationsFragment.btn_phpto.setImageBitmap(BitmapFactory.decodeFile(mCameraImagePath));
                 }
             } else {
                 Toast.makeText(this,"取消",Toast.LENGTH_LONG).show();
@@ -148,10 +155,9 @@ public class Photo extends AppCompatActivity {
             // 获取图库所选图片的uri
             Uri uri = data.getData();
             ivCamera.setImageURI(uri);
-            NotificationsFragment.btn_phpto.setImageURI(uri);
+            //NotificationsFragment.btn_phpto.setImageURI(uri);
         }
     }
-
     /**
      * 处理权限申请的回调。
      *
