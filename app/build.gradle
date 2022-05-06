@@ -52,4 +52,6 @@ dependencies {
     implementation 'io.github.youth5201314:banner:2.2.2'
     implementation 'com.github.bumptech.glide:glide:4.13.1'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'com.ejlchina:okhttps:3.0.2'
+    implementation 'com.ejlchina:okhttps-jackson:3.0.2'
 }

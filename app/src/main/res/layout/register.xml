@@ -73,7 +73,7 @@
                     android:background="@drawable/btu_press"
                     android:drawableLeft="@drawable/icon_username"
                     android:drawablePadding="10dp"
-                    android:hint="邮箱"
+                    android:hint="真实姓名"
                     android:paddingLeft="20dp"
                     android:singleLine="true"
                     android:textColor="@color/black"
@@ -189,7 +189,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/et_3"
+                    android:id="@+id/phone"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:background="@drawable/btu_press"

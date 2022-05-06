@@ -10,9 +10,21 @@ import android.transition.Slide;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.ejlchina.okhttps.HTTP;
+import com.ejlchina.okhttps.JacksonMsgConvertor;
+import com.ejlchina.okhttps.OkHttps;
+import com.example.a_yard.data.UserBean;
+import com.example.a_yard.data.UserInfo;
+
+import java.util.HashMap;
+
+import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 public class Login extends Activity {
-    private Button mBtn_zhuce,mbtn_login;
+    private Button mBtn_zhuce,mbtn_login,mbtn_denglu;
     private Button mBtn_delete;
     private EditText eT_username;
     private EditText eT_password;
@@ -46,15 +58,66 @@ public class Login extends Activity {
         //清除用户名输入框内容
         mBtn_delete =findViewById(R.id.btn_delete);
         eT_username =findViewById(R.id.usernameText);
+        eT_password = findViewById(R.id.pwText);
         mBtn_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 eT_username.setText("");
             }
         });
+
+        //登录
+        HTTP http = HTTP.builder()
+                .config( builder -> builder.addInterceptor(chain -> {
+                    Response res = chain.proceed(chain.request());
+                    ResponseBody body = res.body();
+                    ResponseBody newBody = null;
+                    if (body != null) {
+                        newBody = ResponseBody.create(body.contentType(), body.bytes());
+                    }
+                    return res.newBuilder().body(newBody).build();
+                }))
+                .baseUrl("http://499270u7q7.51vip.biz")
+                .addMsgConvertor(new JacksonMsgConvertor())
+                .build();
+        mbtn_denglu =findViewById(R.id.btn_denglu);
+        mbtn_denglu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UserBean user = new UserBean(Long.valueOf(eT_username.getText().toString()),eT_password.getText().toString());
+                HashMap<String,String> ret =
+                        http.async("/login")
+                                .bind(this)
+                                .bodyType(OkHttps.JSON)
+                                .setBodyPara(user)
+                                .post()
+                                .getResult()
+                                .getBody()
+                                .toBean(new HashMap<String,String>().getClass());
+                Toast.makeText(getApplicationContext(),ret.get("result"),Toast.LENGTH_SHORT).show();
+                if(ret.get("result").equals("success")) {
+                    UserInfo userInfo =
+                            http.async("/UserInfo")
+                                    .bind(this)
+                                    .bodyType(OkHttps.JSON)
+                                    .setBodyPara(user)
+                                    .post()
+                                    .getResult()
+                                    .getBody()
+                                    .toBean(new UserInfo().getClass());
+                    if(userInfo.getU_class()==0){
+                        //普通用户主页
+                    }else {
+                        //房主首页
+                        Intent intent = new Intent(Login.this,MainActivity.class);
+                        startActivity(intent);
+                        Login.this.finish();
+                    }
+                }
+            }
+        });
         //设置密码显示模式
         mBtn_yincang = findViewById(R.id.btn_yincang);
-        eT_password = findViewById(R.id.pwText);
         mBtn_yincang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,15 +128,6 @@ public class Login extends Activity {
                     eT_password.setInputType(128);//设置为显示密码
                 }
                 eT_password.setSelection(eT_password.getText().length());//设置光标的位置到末尾
-            }
-        });
-        mbtn_login=findViewById(R.id.btn_denglu);
-        mbtn_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Login.this,MainActivity.class);
-                startActivity(intent);
-                Login.this.finish();
             }
         });
     }
