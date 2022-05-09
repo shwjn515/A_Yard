@@ -1,5 +1,7 @@
 package com.example.a_yard.data;
 
+import android.content.SharedPreferences;
+
 public class UserInfo {
     String name;
     String password;
@@ -96,5 +98,31 @@ public class UserInfo {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public void savePreference(SharedPreferences preferences) {
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("name",name).commit();
+        editor.putString("password",password).commit();
+        editor.putString("u_id",u_id).commit();
+        editor.putLong("phone",phone).commit();
+        editor.putString("u_address",u_address).commit();
+        editor.putString("u_name",u_name).commit();
+        editor.putString("u_photo",u_photo).commit();
+        editor.putInt("u_class",u_class).commit();
+        editor.putLong("id",id).commit();
+    }
+    
+    public UserInfo loadPreference(SharedPreferences preferences) {
+        this.name = preferences.getString("name","name");
+        this.password = preferences.getString("password","password");
+        this.u_id = preferences.getString("u_id","u_id");
+        this.phone = preferences.getLong("phone",0);
+        this.u_address = preferences.getString("u_address","u_address");
+        this.u_name = preferences.getString("u_name","u_name");
+        this.u_photo = preferences.getString("u_photo","u_photo");
+        this.u_class = preferences.getInt("u_class",0);
+        this.id = preferences.getLong("id",0);
+        return this;
     }
 }

@@ -8,8 +8,10 @@ import static androidx.fragment.app.FragmentManager.TAG;
 import android.annotation.SuppressLint;
 import android.app.ActivityOptions;
 import android.app.KeyguardManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.hardware.biometrics.BiometricPrompt;
 import android.os.Build;
 import android.os.Bundle;
@@ -35,6 +37,9 @@ import javax.crypto.SecretKey;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.a_yard.Login;
 import com.example.a_yard.MainActivity;
 import com.example.a_yard.Photo;
@@ -42,7 +47,8 @@ import com.example.a_yard.R;
 
 public class NotificationsFragment extends Fragment {
     private Button btn_name,btn_person,btn_indent,btn_client,btn_bill;
-    public static ImageButton btn_phpto;
+    private  ImageButton btn_phpto;
+    private boolean isFirstLoading = true;
     private static final String DEFAULT_KEY_NAME = "default_key";
     public static boolean successful = false;
     private KeyStore keyStore;
@@ -56,14 +62,15 @@ public class NotificationsFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        SharedPreferences sharedPreferences =
+                getActivity().getSharedPreferences("userinfo", Context.MODE_PRIVATE);
         btn_name=(Button) getActivity().findViewById(R.id.name);
-        btn_name.setText("156****8293");
+        btn_name.setText(sharedPreferences.getString("name","点击登录"));
         btn_name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), Login.class);
                 startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
-                btn_name.setText("156****8293");
             }
         });
         btn_phpto=(ImageButton) getActivity().findViewById(R.id.myphoto);
@@ -72,8 +79,17 @@ public class NotificationsFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), Photo.class);
                 startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
+
             }
         });
+        String photoUrl = sharedPreferences.getString("u_photo","default");
+        if(photoUrl.contains("https")) {
+            Glide.with(btn_phpto)
+                    .load(photoUrl)
+                    .thumbnail(Glide.with(btn_phpto).load(R.drawable.touxiang))
+                    .apply(RequestOptions.bitmapTransform(new RoundedCorners(30)))
+                    .into(btn_phpto);
+        }
         //个人信息
         btn_person=(Button) getActivity().findViewById(R.id.person);
         btn_person.setOnClickListener(new View.OnClickListener() {
@@ -161,5 +177,26 @@ public class NotificationsFragment extends Fragment {
             biometricPrompt.authenticate(cancellationSignal, getActivity().getMainExecutor(), mAuthenticationCallback);
         }
         return true;
+    }
+    /**
+     * 在fragment可见的时候，刷新数据
+     */
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (!isFirstLoading) {
+            //如果不是第一次加载，刷新数据
+            SharedPreferences sharedPreferences =
+                    getActivity().getSharedPreferences("userinfo", Context.MODE_PRIVATE);
+            String photoUrl = sharedPreferences.getString("u_photo","default");
+            if(photoUrl.contains("https")) {
+                Glide.with(btn_phpto)
+                        .load(photoUrl)
+                        .thumbnail(Glide.with(btn_phpto).load(R.drawable.touxiang))
+                        .apply(RequestOptions.bitmapTransform(new RoundedCorners(30)))
+                        .into(btn_phpto);
+            }
+        }
+        isFirstLoading = false;
     }
 }

@@ -3,6 +3,7 @@ package com.example.a_yard;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.transition.Explode;
 import android.transition.Fade;
@@ -105,6 +106,9 @@ public class Login extends Activity {
                                     .getResult()
                                     .getBody()
                                     .toBean(new UserInfo().getClass());
+                    SharedPreferences sharedPreferences =
+                    getSharedPreferences("userinfo",MODE_PRIVATE);
+                    userInfo.savePreference(sharedPreferences);
                     if(userInfo.getU_class()==0){
                         //普通用户主页
                     }else {

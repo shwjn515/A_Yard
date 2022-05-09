@@ -1,6 +1,8 @@
 package com.example.a_yard;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -13,6 +15,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.a_yard.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -34,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     private ImageButton btn_lightmenu;
+    private ImageView headerImageView;
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;//抽屉
 
@@ -88,6 +94,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDrawerOpened(View drawerView) {
                 btn_lightmenu.setImageResource(R.drawable.back);
+                headerImageView=findViewById(R.id.headerImageView);
+                SharedPreferences sharedPreferences = getSharedPreferences("userinfo", Context.MODE_PRIVATE);
+                String photoUrl = sharedPreferences.getString("u_photo","default");
+                if(photoUrl.contains("https")) {
+                    Glide.with(headerImageView)
+                            .load(photoUrl)
+                            .thumbnail(Glide.with(headerImageView).load(R.drawable.touxiang))
+                            .apply(RequestOptions.bitmapTransform(new RoundedCorners(30)))
+                            .into(headerImageView);
+                }
             }
             //抽屉滑入隐藏时触发
             @Override
