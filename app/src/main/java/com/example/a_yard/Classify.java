@@ -32,6 +32,9 @@ public class Classify extends Activity {
             public void onClick(View v) {
                //房客界面预留
                 boolean success =  updateClass(0);
+                Intent intent = new Intent(Classify.this, ClientMainActivity.class);
+                startActivity(intent);
+                Classify.this.finish();
             }
         });
         //房主选项
@@ -72,7 +75,7 @@ public class Classify extends Activity {
                         .post()
                         .getResult()
                         .getBody()
-                        .toBean(new HashMap<String,String>().getClass());
+                        .toBean(HashMap.class);
         return  updateRet.get("result").equals("success");
     }
 }

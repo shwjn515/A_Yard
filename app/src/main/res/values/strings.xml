@@ -3,6 +3,9 @@
     <string name="title_home">房间</string>
     <string name="title_dashboard">消息</string>
     <string name="title_notifications">个人</string>
+    <string name="title_home2">预定</string>
+    <string name="title_dashboard2">消息</string>
+    <string name="title_notifications2">个人</string>
     <string name="imagetoken">25112b7b7b567a4ec65c5c31e97d0b08</string>
     <string name="imageuid">5cf5c4812648d7c364e28754380e4ac6</string>
 </resources>

@@ -111,6 +111,9 @@ public class Login extends Activity {
                     userInfo.savePreference(sharedPreferences);
                     if(userInfo.getU_class()==0){
                         //普通用户主页
+                        Intent intent = new Intent(Login.this,ClientMainActivity.class);
+                        startActivity(intent);
+                        Login.this.finish();
                     }else {
                         //房主首页
                         Intent intent = new Intent(Login.this,MainActivity.class);

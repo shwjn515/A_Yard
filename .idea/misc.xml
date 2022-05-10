@@ -28,6 +28,7 @@
         <entry key="..\:/Android-studio/A_Yard/app/src/main/res/layout/classify.xml" value="0.3423913043478261" />
         <entry key="..\:/Android-studio/A_Yard/app/src/main/res/layout/client.xml" value="0.39947916666666666" />
         <entry key="..\:/Android-studio/A_Yard/app/src/main/res/layout/client_detail_page.xml" value="0.39947916666666666" />
+        <entry key="..\:/Android-studio/A_Yard/app/src/main/res/layout/client_main.xml" value="0.3783132530120482" />
         <entry key="..\:/Android-studio/A_Yard/app/src/main/res/layout/clientlist.xml" value="0.3848958333333333" />
         <entry key="..\:/Android-studio/A_Yard/app/src/main/res/layout/fingerprint.xml" value="0.3848958333333333" />
         <entry key="..\:/Android-studio/A_Yard/app/src/main/res/layout/fragment_dashboard.xml" value="0.358695652173913" />
@@ -54,6 +55,7 @@
         <entry key="..\:/Android-studio/A_Yard/app/src/main/res/layout/title_layout.xml" value="0.3848958333333333" />
         <entry key="..\:/Android-studio/A_Yard/app/src/main/res/layout/top.xml" value="0.3848958333333333" />
         <entry key="..\:/Android-studio/A_Yard/app/src/main/res/menu/bottom_nav_menu.xml" value="0.3578125" />
+        <entry key="..\:/Android-studio/A_Yard/app/src/main/res/menu/bottom_nav_menu2.xml" value="0.20989583333333334" />
         <entry key="..\:/Android-studio/A_Yard/app/src/main/res/menu/menu_navigation.xml" value="0.39947916666666666" />
         <entry key="..\:/Android-studio/A_Yard/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.3285" />
       </map>
