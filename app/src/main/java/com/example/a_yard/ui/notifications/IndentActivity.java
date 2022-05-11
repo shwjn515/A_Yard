@@ -2,27 +2,36 @@ package com.example.a_yard.ui.notifications;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.helper.widget.Carousel;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
+import com.ejlchina.okhttps.HTTP;
+import com.ejlchina.okhttps.JacksonMsgConvertor;
+import com.ejlchina.okhttps.OkHttps;
 import com.example.a_yard.R;
 import com.example.a_yard.StatusBarUtils;
-import com.example.a_yard.ui.dashboard.MyAdapter;
+import com.example.a_yard.data.Indent;
 import com.example.a_yard.ui.home.MyDividerItemDecoration;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-public class Indent extends AppCompatActivity {
+import okhttp3.Response;
+import okhttp3.ResponseBody;
+
+public class IndentActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private IndentAdapter IAdapter;
+    public ArrayList<HashMap<String,String>> indents;
     private RecyclerView.LayoutManager mLayoutManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,14 +49,14 @@ public class Indent extends AppCompatActivity {
             @Override
             public void onItemClick(View view, int position) {
                 //点击事件
-                Intent intent = new Intent(Indent.this, IndentDetailPage.class);
+                Intent intent = new Intent(IndentActivity.this, IndentDetailPage.class);
+                String i_id = getData().get(position).split(",")[0];
+                intent.putExtra("i_id", i_id);
                 startActivity(intent);
             }
-
             @Override
             public void onItemLongClick(View view, int position) {
                 //长按
-
             }
         });
     }
@@ -63,9 +72,40 @@ public class Indent extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+    ArrayList<String> data = new ArrayList<>();
     private void initData() {
+        HTTP http = HTTP.builder()
+                .config( builder -> builder.addInterceptor(chain -> {
+                    Response res = chain.proceed(chain.request());
+                    ResponseBody body = res.body();
+                    ResponseBody newBody = null;
+                    if (body != null) {
+                        newBody = ResponseBody.create(body.contentType(), body.bytes());
+                    }
+                    return res.newBuilder().body(newBody).build();
+                }))
+                .baseUrl("http://499270u7q7.51vip.biz")
+                .addMsgConvertor(new JacksonMsgConvertor())
+                .build();
+        SharedPreferences sharedPreferences = getSharedPreferences("userinfo",MODE_PRIVATE);
+        indents =
+                http.async("/indents")
+                        .bind(this)
+                        .bodyType(OkHttps.JSON)
+                        .setBodyPara(sharedPreferences.getLong("id", -1))
+                        .post()
+                        .getResult()
+                        .getBody()
+                        .<ArrayList>toBean(ArrayList.class);
+        data = new ArrayList<>();
+        for(HashMap<String,String> indent : indents) {
+            data.add(String.valueOf(indent.get("i_id"))+","
+                    +indent.get("i_time")+","
+                    +String.valueOf(indent.get("i_money"))+","
+                    +sharedPreferences.getString("name","user"));
+        }
         mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        IAdapter = new IndentAdapter(getData());
+        IAdapter = new IndentAdapter(data);
     }
 
     private void initView() {
@@ -74,16 +114,12 @@ public class Indent extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         // 设置adapter
         mRecyclerView.setAdapter(IAdapter);
-        mRecyclerView.addItemDecoration(new MyDividerItemDecoration(Indent.this, LinearLayoutManager.VERTICAL));
+        mRecyclerView.addItemDecoration(new MyDividerItemDecoration(IndentActivity.this, LinearLayoutManager.VERTICAL));
         // 设置Item添加和移除的动画
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
     }
 
-    private ArrayList<String> getData() {
-        ArrayList<String> data = new ArrayList<>();
-        data.add("12345678921,2022-04-09,60,张三");
-        data.add("12345678922,20220410,170,李四");
-        data.add("12345678923,20220410,180,王五");
+    public ArrayList<String> getData() {
         return data;
     }
 }

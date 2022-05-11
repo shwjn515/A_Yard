@@ -21,14 +21,6 @@
         android:theme="@style/Theme.A_Yard"
         tools:targetApi="31">
         <activity
-            android:name="com.example.a_yard.ClientMainActivity"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name="com.example.a_yard.ui.home.RoomList"
             android:exported="false" />
         <activity
@@ -50,14 +42,21 @@
             android:name="com.example.a_yard.ui.notifications.Person"
             android:exported="false" />
         <activity
-            android:name="com.example.a_yard.ui.notifications.Indent"
+            android:name="com.example.a_yard.ui.notifications.IndentActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/AppTheme">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.example.a_yard.ClientMainActivity"
+            android:exported="true" >
         </activity>
         <activity
             android:name=".Register"

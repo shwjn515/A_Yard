@@ -13,10 +13,10 @@
         android:textSize="23sp" />
     <!--输入框-->
     <EditText
-        android:id="@+id/userName"
+        android:id="@+id/i_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="12345678921"
+        android:text=""
         android:textColor="@color/grey"
         android:focusable="false"
         android:longClickable="false"/>
@@ -28,10 +28,10 @@
         android:textColor="#666666" />
     <!--输入框：-->
     <EditText
-        android:id="@+id/dasdasss"
+        android:id="@+id/i_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="2022-04-08  12:28:36"
+        android:text=""
         android:textColor="@color/grey"
         android:focusable="false"
         android:longClickable="false"/>
@@ -43,10 +43,10 @@
         android:textColor="#666666" />
     <!--输入框：-->
     <EditText
-        android:id="@+id/userturename"
+        android:id="@+id/i_in"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="2,022 年 04 月 09 日"
+        android:text=""
         android:textColor="@color/grey"
         android:focusable="false"
         android:longClickable="false"/>
@@ -58,10 +58,10 @@
         android:textColor="#666666" />
     <!--输入框：-->
     <EditText
-        android:id="@+id/dasdasd"
+        android:id="@+id/i_out"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="2,022 年 04 月 10 日"
+        android:text=""
         android:textColor="@color/grey"
         android:focusable="false"
         android:longClickable="false"/>
@@ -73,10 +73,10 @@
         android:textColor="#666666" />
     <!--输入框：-->
     <EditText
-        android:id="@+id/usertrueid"
+        android:id="@+id/i_money"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="60"
+        android:text=""
         android:textColor="@color/grey"
         android:focusable="false"
         android:longClickable="false"/>
@@ -88,10 +88,10 @@
         android:textColor="#666666" />
     <!--输入框：-->
     <EditText
-        android:id="@+id/useraddress"
+        android:id="@+id/a_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="102"
+        android:text=""
         android:textColor="@color/grey"
         android:focusable="false"
         android:longClickable="false"/>
@@ -103,10 +103,10 @@
         android:textColor="#666666" />
     <!--输入框：-->
     <EditText
-        android:id="@+id/ddsdas"
+        android:id="@+id/c_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="张三,李四"
+        android:text=""
         android:textColor="@color/grey"
         android:focusable="false"
         android:longClickable="false"/>
@@ -120,7 +120,7 @@
         <Button
             android:layout_width="100dp"
             android:layout_height="70dp"
-            android:id="@+id/modification"
+            android:id="@+id/modification4"
             android:text="修 改"/>
         <TextView
             android:layout_width="40dp"
@@ -128,7 +128,7 @@
         <Button
             android:layout_width="100dp"
             android:layout_height="70dp"
-            android:id="@+id/save"
+            android:id="@+id/save4"
             android:text="保 存"/>
     </LinearLayout>
 </LinearLayout>

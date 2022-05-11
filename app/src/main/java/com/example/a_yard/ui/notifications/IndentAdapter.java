@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class IndentAdapter extends RecyclerView.Adapter<IndentAdapter.ViewHolder>{
 
     private ArrayList<String> mData;
+    private String i_id;
     private OnItemClickListener onItemClickListener;
     public  IndentAdapter(ArrayList<String> data) {
         this.mData = data;
