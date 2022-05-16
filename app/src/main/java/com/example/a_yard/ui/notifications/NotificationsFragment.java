@@ -106,7 +106,7 @@ public class NotificationsFragment extends Fragment {
         btn_client.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), Client.class);
+                Intent intent = new Intent(getActivity(), ClientActivity.class);
                 startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
             }
         });

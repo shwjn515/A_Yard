@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -29,6 +30,7 @@ import com.example.a_yard.ImageAdapter;
 import com.example.a_yard.Login;
 import com.example.a_yard.R;
 import com.example.a_yard.databinding.FragmentHomeBinding;
+import com.example.a_yard.ui.notifications.Bill;
 import com.google.android.material.snackbar.Snackbar;
 import com.youth.banner.Banner;
 import com.youth.banner.adapter.BannerImageAdapter;
@@ -40,8 +42,8 @@ import com.youth.banner.listener.OnBannerListener;
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
-
     private FragmentHomeBinding binding;
+    private ImageButton btn_addroom;
     private Banner banner;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -125,6 +127,15 @@ public class HomeFragment extends Fragment {
         GradientDrawable myGrad8 = (GradientDrawable)mbtn_room8.getBackground();
         myGrad8.setColor(ContextCompat.getColor(getActivity(),R.color.purple_200));
 
+        //添加房间按钮监听
+        btn_addroom=getActivity().findViewById(R.id.btn_addroom);
+        btn_addroom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), addroom.class);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
+            }
+        });
         //recyclerview初始化
         initData();
         initView();

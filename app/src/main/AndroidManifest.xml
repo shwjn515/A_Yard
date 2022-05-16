@@ -21,6 +21,9 @@
         android:theme="@style/Theme.A_Yard"
         tools:targetApi="31">
         <activity
+            android:name="com.example.a_yard.ui.home.addroom"
+            android:exported="false" />
+        <activity
             android:name="com.example.a_yard.ui.home.RoomList"
             android:exported="false" />
         <activity
@@ -36,7 +39,7 @@
             android:name="com.example.a_yard.ui.notifications.Bill"
             android:exported="false" />
         <activity
-            android:name="com.example.a_yard.ui.notifications.Client"
+            android:name="com.example.a_yard.ui.notifications.ClientActivity"
             android:exported="false" />
         <activity
             android:name="com.example.a_yard.ui.notifications.Person"
@@ -51,13 +54,13 @@
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name="com.example.a_yard.ClientMainActivity"
-            android:exported="true" >
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".Register"
             android:exported="false">

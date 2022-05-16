@@ -16,6 +16,7 @@ import com.ejlchina.okhttps.HTTP;
 import com.ejlchina.okhttps.JacksonMsgConvertor;
 import com.ejlchina.okhttps.OkHttps;
 import com.example.a_yard.R;
+import com.example.a_yard.StatusBarUtils;
 import com.example.a_yard.data.UserInfo;
 import com.example.a_yard.ui.dashboard.MyAdapter;
 
@@ -33,6 +34,7 @@ public class IndentDetailPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.indent_detail_page);
+        StatusBarUtils.setWindowStatusBarColor(this,R.color.blue);
         ActionBar actionBar = getSupportActionBar();  // 获取ActionBar
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);  // 设置返回按钮
@@ -103,6 +105,7 @@ public class IndentDetailPage extends AppCompatActivity {
                 setCanEdit2(i_out);
                 setCanEdit2(i_money);
                 setCanEdit2(a_id);
+                Toast.makeText(getApplicationContext(),"修改成功",Toast.LENGTH_SHORT).show();
             }
         });
     }

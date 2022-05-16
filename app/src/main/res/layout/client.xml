@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.notifications.Client">
+    tools:context=".ui.notifications.ClientActivity">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/client_recyclerView"
         android:layout_width="match_parent"

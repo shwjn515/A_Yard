@@ -7,21 +7,28 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
+import com.ejlchina.okhttps.HTTP;
+import com.ejlchina.okhttps.JacksonMsgConvertor;
+import com.ejlchina.okhttps.OkHttps;
 import com.example.a_yard.R;
 import com.example.a_yard.StatusBarUtils;
-import com.example.a_yard.ui.dashboard.MyAdapter;
 import com.example.a_yard.ui.home.MyDividerItemDecoration;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
-public class Client extends AppCompatActivity {
+import okhttp3.Response;
+import okhttp3.ResponseBody;
+
+public class ClientActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private ClientAdapter IAdapter;
+    public ArrayList<HashMap<String,String>> indents;
     private RecyclerView.LayoutManager mLayoutManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +46,9 @@ public class Client extends AppCompatActivity {
             @Override
             public void onItemClick(View view, int position) {
                 //点击事件
-                Intent intent = new Intent(Client.this, ClientDetailPage.class);
+                Intent intent = new Intent(ClientActivity.this, ClientDetailPage.class);
+                String c_id = getData().get(position).split(",")[0];
+                intent.putExtra("c_id", c_id);
                 startActivity(intent);
             }
 
@@ -62,7 +71,38 @@ public class Client extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+    ArrayList<String> data = new ArrayList<>();
     private void initData() {
+        HTTP http = HTTP.builder()
+                .config( builder -> builder.addInterceptor(chain -> {
+                    Response res = chain.proceed(chain.request());
+                    ResponseBody body = res.body();
+                    ResponseBody newBody = null;
+                    if (body != null) {
+                        newBody = ResponseBody.create(body.contentType(), body.bytes());
+                    }
+                    return res.newBuilder().body(newBody).build();
+                }))
+                .baseUrl("http://499270u7q7.51vip.biz")
+                .addMsgConvertor(new JacksonMsgConvertor())
+                .build();
+        SharedPreferences sharedPreferences = getSharedPreferences("userinfo",MODE_PRIVATE);
+        indents =
+                http.async("/indents")
+                        .bind(this)
+                        .bodyType(OkHttps.JSON)
+                        .setBodyPara(sharedPreferences.getLong("id", -1))
+                        .post()
+                        .getResult()
+                        .getBody()
+                        .<ArrayList>toBean(ArrayList.class);
+        data = new ArrayList<>();
+        for(HashMap<String,String> indent : indents) {
+            data.add(String.valueOf(indent.get("i_id"))+","
+                    +indent.get("i_time")+","
+                    +String.valueOf(indent.get("i_money"))+","
+                    +sharedPreferences.getString("name","user"));
+        }
         mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         IAdapter = new ClientAdapter(getData());
     }
@@ -73,16 +113,12 @@ public class Client extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         // 设置adapter
         mRecyclerView.setAdapter(IAdapter);
-        mRecyclerView.addItemDecoration(new MyDividerItemDecoration(Client.this, LinearLayoutManager.VERTICAL));
+        mRecyclerView.addItemDecoration(new MyDividerItemDecoration(ClientActivity.this, LinearLayoutManager.VERTICAL));
         // 设置Item添加和移除的动画
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
     }
 
     private ArrayList<String> getData() {
-        ArrayList<String> data = new ArrayList<>();
-        data.add("张三,15699998293");
-        data.add("李四,12345678989");
-        data.add("王五,15699999631");
         return data;
     }
 }

@@ -25,7 +25,29 @@
                     android:clickable="true"
                     android:background="#E1DEDE"
                     android:layout_height="200dp"
-                    android:focusable="true" />
+                    android:focusable="true" >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="30dp"
+                            android:layout_height="10dp">
+                        </TextView>
+                        <ImageButton
+                            android:id="@+id/btn_addroom"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:padding="10dp"
+                            android:background="@drawable/shape_circle"
+                            android:layout_marginBottom="10dp"
+                            android:src="@drawable/add2"
+                            android:scaleType="centerInside">
+                        </ImageButton>
+                    </LinearLayout>
+                </com.youth.banner.Banner>
                 <!--    周边控件按钮-->
                 <LinearLayout
                     android:layout_width="match_parent"
