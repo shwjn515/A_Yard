@@ -38,7 +38,7 @@ import androidx.navigation.ui.NavigationUI;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
-    private ImageButton btn_lightmenu,btn_addroom;
+    private ImageButton btn_lightmenu;
     private ImageView headerImageView;
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;//抽屉
@@ -72,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
         }
         navigationView=findViewById(R.id.navigation_view);
         drawerLayout=findViewById(R.id.drawer_layout);
-        btn_addroom=findViewById(R.id.btn_addroom);
         btn_lightmenu=findViewById(R.id.btn_lightmenubutton);
         btn_lightmenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,15 +82,9 @@ public class MainActivity extends AppCompatActivity {
                 }else {
                     drawerLayout.openDrawer(Gravity.LEFT);
                 }
+            }
+        });
 
-            }
-        });
-        btn_lightmenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //添加房间页面预留
-            }
-        });
 
         drawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
             //滑动时触发，会多次调用

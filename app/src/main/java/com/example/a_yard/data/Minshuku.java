@@ -1,6 +1,9 @@
 package com.example.a_yard.data;
 
+import android.content.SharedPreferences;
+
 public class Minshuku {
+    String m_name;
     Long m_id;
     Long id;
     String m_address;
@@ -9,7 +12,16 @@ public class Minshuku {
     String m_sur;
     String m_service;
 
-    public Minshuku(Long m_id, Long id, String m_address, String m_photo, String HPOC, String m_sur, String m_service) {
+    public String getM_name() {
+        return m_name;
+    }
+
+    public void setM_name(String m_name) {
+        this.m_name = m_name;
+    }
+
+    public Minshuku(String m_name, Long m_id, Long id, String m_address, String m_photo, String HPOC, String m_sur, String m_service) {
+        this.m_name = m_name;
         this.m_id = m_id;
         this.id = id;
         this.m_address = m_address;
@@ -76,5 +88,28 @@ public class Minshuku {
     }
 
     public Minshuku() {
+    }
+    public void savePreference(SharedPreferences preferences) {
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("m_name",m_name).commit();
+        editor.putLong("m_id",m_id).commit();
+        editor.putLong("id",id).commit();
+        editor.putString("m_address",m_address).commit();
+        editor.putString("m_photo",m_photo).commit();
+        editor.putString("HPOC",HPOC).commit();
+        editor.putString("m_sur",m_sur).commit();
+        editor.putString("m_service",m_service).commit();
+    }
+
+    public Minshuku loadPreference(SharedPreferences preferences) {
+        this.m_name = preferences.getString("m_name","民宿");
+        this.m_id = preferences.getLong("m_id",-1);
+        this.id = preferences.getLong("id",-1);
+        this.m_address = preferences.getString("m_address","null");
+        this.m_photo = preferences.getString("m_phpto","null");
+        this.HPOC = preferences.getString("HPOC","null");
+        this.m_sur = preferences.getString("m_sur","null");
+        this.m_service = preferences.getString("m_service","null");
+        return this;
     }
 }

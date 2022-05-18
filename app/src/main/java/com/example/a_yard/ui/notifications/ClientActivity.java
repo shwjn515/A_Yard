@@ -28,7 +28,7 @@ import okhttp3.ResponseBody;
 public class ClientActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private ClientAdapter IAdapter;
-    public ArrayList<HashMap<String,String>> indents;
+    public ArrayList<HashMap<String,String>> clients;
     private RecyclerView.LayoutManager mLayoutManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,14 +41,16 @@ public class ClientActivity extends AppCompatActivity {
             actionBar.setTitle("顾客管理");
         }
         initData();
+        getData();
         initView();
         IAdapter.setOnItemClickListener(new ClientAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 //点击事件
                 Intent intent = new Intent(ClientActivity.this, ClientDetailPage.class);
-                String c_id = getData().get(position).split(",")[0];
+                String c_id = clients.get(position).get("c_id");
                 intent.putExtra("c_id", c_id);
+                System.out.println(c_id);
                 startActivity(intent);
             }
 
@@ -87,8 +89,8 @@ public class ClientActivity extends AppCompatActivity {
                 .addMsgConvertor(new JacksonMsgConvertor())
                 .build();
         SharedPreferences sharedPreferences = getSharedPreferences("userinfo",MODE_PRIVATE);
-        indents =
-                http.async("/indents")
+        clients =
+                http.async("/clients")
                         .bind(this)
                         .bodyType(OkHttps.JSON)
                         .setBodyPara(sharedPreferences.getLong("id", -1))
@@ -97,11 +99,9 @@ public class ClientActivity extends AppCompatActivity {
                         .getBody()
                         .<ArrayList>toBean(ArrayList.class);
         data = new ArrayList<>();
-        for(HashMap<String,String> indent : indents) {
-            data.add(String.valueOf(indent.get("i_id"))+","
-                    +indent.get("i_time")+","
-                    +String.valueOf(indent.get("i_money"))+","
-                    +sharedPreferences.getString("name","user"));
+        for(HashMap<String,String> client : clients) {
+            data.add(String.valueOf(client.get("c_name"))+","
+                    +String.valueOf(client.get("c_phone")));
         }
         mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         IAdapter = new ClientAdapter(getData());

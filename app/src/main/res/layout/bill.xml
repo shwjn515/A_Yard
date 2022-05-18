@@ -65,10 +65,11 @@
             android:textSize="23sp"
             android:textColor="#666666" />
         <TextView
+            android:id="@+id/totalmoney"
             android:layout_width="300dp"
             android:layout_height="300dp"
             android:layout_gravity="center"
-            android:text="666000元"
+            android:text=""
             android:textSize="58sp"
             android:gravity="center"
             android:focusable="false"

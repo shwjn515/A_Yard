@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.ejlchina.okhttps.HTTP;
 import com.ejlchina.okhttps.JacksonMsgConvertor;
 import com.ejlchina.okhttps.OkHttps;
+import com.example.a_yard.data.Minshuku;
 import com.example.a_yard.data.UserBean;
 import com.example.a_yard.data.UserInfo;
 
@@ -118,6 +119,18 @@ public class Login extends Activity {
                         //房主首页
                         Intent intent = new Intent(Login.this,MainActivity.class);
                         startActivity(intent);
+                        Minshuku minshuku =
+                                http.async("/minshuku")
+                                        .bind(this)
+                                        .bodyType(OkHttps.JSON)
+                                        .setBodyPara(userInfo.getId())
+                                        .post()
+                                        .getResult()
+                                        .getBody()
+                                        .toBean(new Minshuku().getClass());
+                        SharedPreferences sharedPreferences2 =
+                                getSharedPreferences("minshuku",MODE_PRIVATE);
+                        minshuku.savePreference(sharedPreferences2);
                         Login.this.finish();
                     }
                 }

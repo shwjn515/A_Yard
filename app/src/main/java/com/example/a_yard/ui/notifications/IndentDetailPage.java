@@ -85,7 +85,6 @@ public class IndentDetailPage extends AppCompatActivity {
                 cname+=arr.get(i).substring(arr.get(i).lastIndexOf(",")+1)+" ";
             }
         c_name.setText(cname);
-        System.out.println(arr.size());
         //修改
         modification4.setOnClickListener(new View.OnClickListener() {
             @Override
