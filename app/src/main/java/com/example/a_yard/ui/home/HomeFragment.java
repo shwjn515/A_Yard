@@ -2,6 +2,7 @@ package com.example.a_yard.ui.home;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
@@ -25,12 +26,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
+import com.ejlchina.okhttps.HTTP;
+import com.ejlchina.okhttps.JacksonMsgConvertor;
+import com.ejlchina.okhttps.OkHttps;
 import com.example.a_yard.DataBean;
 import com.example.a_yard.ImageAdapter;
 import com.example.a_yard.Login;
 import com.example.a_yard.R;
+import com.example.a_yard.data.Apartment;
 import com.example.a_yard.databinding.FragmentHomeBinding;
 import com.example.a_yard.ui.notifications.Bill;
+import com.example.a_yard.ui.notifications.IndentActivity;
+import com.example.a_yard.ui.notifications.IndentAdapter;
+import com.example.a_yard.ui.notifications.IndentDetailPage;
 import com.google.android.material.snackbar.Snackbar;
 import com.youth.banner.Banner;
 import com.youth.banner.adapter.BannerImageAdapter;
@@ -40,21 +48,25 @@ import com.youth.banner.indicator.RectangleIndicator;
 import com.youth.banner.listener.OnBannerListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+
+import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
     private ImageButton btn_addroom;
     private Banner banner;
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private RoomListAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
-
         return root;
     }
     @Override
@@ -137,13 +149,51 @@ public class HomeFragment extends Fragment {
             }
         });
         //recyclerview初始化
-        initData();
+        if(rooms == null) initData();
+        mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        mAdapter = new RoomListAdapter(rooms);
         initView();
+        mAdapter.setOnItemClickListener(new IndentAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                //点击事件
+                Intent intent = new Intent(getContext(), RoomList.class);
+                intent.putExtra("position", position);
+                intent.putExtra("a_id",(Integer) rooms.get(position).get("a_id"));
+                startActivity(intent);
+            }
+            @Override
+            public void onItemLongClick(View view, int position) {
+                //长按
+            }
+        });
     }
     //
+    ArrayList<String> data = new ArrayList<>();
+    public ArrayList<HashMap<String,Object>> rooms = null;
     private void initData() {
-        mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-        mAdapter = new RoomListAdapter(getData());
+        HTTP http = HTTP.builder()
+                .config( builder -> builder.addInterceptor(chain -> {
+                    Response res = chain.proceed(chain.request());
+                    ResponseBody body = res.body();
+                    ResponseBody newBody = null;
+                    if (body != null) {
+                        newBody = ResponseBody.create(body.contentType(), body.bytes());
+                    }
+                    return res.newBuilder().body(newBody).build();
+                }))
+                .baseUrl("http://499270u7q7.51vip.biz")
+                .addMsgConvertor(new JacksonMsgConvertor())
+                .build();
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("minshuku",getActivity().MODE_PRIVATE);
+        rooms= http.async("/apartments")
+                        .bind(this)
+                        .bodyType(OkHttps.JSON)
+                        .setBodyPara(String.valueOf(sharedPreferences.getLong("m_id",-1)))
+                        .post()
+                        .getResult()
+                        .getBody()
+                        .toBean(ArrayList.class);
     }
 
     private void initView() {
@@ -156,14 +206,5 @@ public class HomeFragment extends Fragment {
         mRecyclerView.addItemDecoration(new MyDividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
         // 设置Item添加和移除的动画
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-    }
-
-    private ArrayList<String> getData() {
-        ArrayList<String> data = new ArrayList<>();
-        data.add("暑假特价房,102,12345678921,2022-04-09,60,已入住,https://img.alicdn.com/bao/uploaded/i2/1749466481/O1CN017xsaIs1xkLcR2RaCo_!!1749466481.jpg_300x300q90.jpg");
-        data.add("暑假出游套房,106,,,200,空闲中,https://www.tokyo.grandnikko.com/cn/stay/executive/images/img_aut2.jpg");
-        data.add("商务单间,108,12345678922,20220410,170,已预定,https://www.gardenhotels.co.jp/images/kyobashi/room/deluxe-twin/deluxe-twin.jpg");
-        data.add("普通标间,109,12345678923,20220410,180,待打扫,https://www.hotelmonterey.co.jp/upload_file/monhim/stay/_D2A9652.JPG");
-        return data;
     }
 }
