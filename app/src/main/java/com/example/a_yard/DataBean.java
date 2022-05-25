@@ -27,16 +27,16 @@ public class DataBean {
 
     public static List<DataBean> getTestData() {
         List<DataBean> list = new ArrayList<>();
-        list.add(new DataBean(R.drawable.icon_phone, "相信自己,你努力的样子真的很美", 1));
-        list.add(new DataBean(R.drawable.btu_press, "极致简约,梦幻小屋", 3));
-        list.add(new DataBean(R.drawable.icon_passage, "超级卖梦人", 3));
+        list.add(new DataBean(R.drawable.icon_phone, "", 1));
+        list.add(new DataBean(R.drawable.btu_press, "", 3));
+        list.add(new DataBean(R.drawable.icon_passage, "", 3));
         return list;
     }
 
     public static List<DataBean> getTestData2() {
         List<DataBean> list = new ArrayList<>();
-        list.add(new DataBean(R.drawable.login, "听风.赏雨", 3));
-        list.add(new DataBean(R.drawable.p4, "迪丽热巴.迪力木拉提", 1));
+        list.add(new DataBean(R.drawable.login, "", 3));
+        list.add(new DataBean(R.drawable.p4, "", 1));
         return list;
     }
 

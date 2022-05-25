@@ -10,14 +10,12 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <!--    轮播图-->
-        <com.youth.banner.Banner
+        <ImageButton
             app:layout_constraintTop_toTopOf="parent"
-            android:id="@+id/home_banner"
+            android:id="@+id/roomphoto"
             android:layout_width="match_parent"
-            android:clickable="true"
             android:background="#E1DEDE"
-            android:layout_height="200dp"
-            android:focusable="true" />
+            android:layout_height="200dp" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -35,11 +33,14 @@
                     android:text="房间名称："
                     android:textSize="14sp" />
                 <EditText
+                    android:id="@+id/roomname"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:background="@color/white"
+                    android:focusable="false"
+                    android:longClickable="false"
                     android:gravity="left"
-                    android:text="暑假特价房"
+                    android:text=""
                     android:textSize="14sp"/>
             </LinearLayout>
             <LinearLayout
@@ -47,18 +48,21 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1">
                 <TextView
-                    android:layout_width="75dp"
+                    android:layout_width="80dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
                     android:textSize="14sp"
                     android:text="房间号码："/>
                 <EditText
+                    android:id="@+id/roomid"
                     android:layout_width="wrap_content"
+                    android:focusable="false"
+                    android:longClickable="false"
                     android:layout_height="match_parent"
                     android:gravity="right"
                     android:layout_marginRight="10dp"
                     android:background="@color/white"
-                    android:text="102"
+                    android:text=""
                     android:textSize="14sp"/>
             </LinearLayout>
         </LinearLayout>
@@ -77,11 +81,14 @@
                     android:textSize="14sp"
                     android:text="房间类型："/>
                 <EditText
+                    android:id="@+id/roomtype"
                     android:layout_width="wrap_content"
+                    android:focusable="false"
+                    android:longClickable="false"
                     android:layout_height="match_parent"
                     android:background="@color/white"
                     android:gravity="left"
-                    android:text="标准间"
+                    android:text=""
                     android:textSize="14sp"/>
             </LinearLayout>
             <LinearLayout
@@ -95,12 +102,15 @@
                     android:layout_marginLeft="10dp"
                     android:text="居住人数："/>
                 <EditText
+                    android:id="@+id/roomlivein"
                     android:layout_width="wrap_content"
+                    android:focusable="false"
+                    android:longClickable="false"
                     android:layout_height="match_parent"
                     android:gravity="right"
                     android:layout_marginRight="10dp"
                     android:background="@color/white"
-                    android:text="4"
+                    android:text=""
                     android:textSize="14sp"/>
             </LinearLayout>
         </LinearLayout>
@@ -119,11 +129,14 @@
                     android:layout_marginLeft="10dp"
                     android:text="房间价格："/>
                 <EditText
+                    android:id="@+id/roomprice"
                     android:layout_width="wrap_content"
+                    android:focusable="false"
+                    android:longClickable="false"
                     android:layout_height="match_parent"
                     android:background="@color/white"
                     android:gravity="left"
-                    android:text="60"
+                    android:text=""
                     android:textSize="14sp"/>
             </LinearLayout>
             <LinearLayout
@@ -137,12 +150,15 @@
                     android:layout_marginLeft="10dp"
                     android:text="床型："/>
                 <EditText
+                    android:id="@+id/roombed"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="right"
+                    android:focusable="false"
+                    android:longClickable="false"
                     android:layout_marginRight="10dp"
                     android:background="@color/white"
-                    android:text="大床"
+                    android:text=""
                     android:textSize="14sp"/>
             </LinearLayout>
         </LinearLayout>
@@ -157,12 +173,15 @@
             android:textSize="14sp"
             android:text="设施服务："/>
         <EditText
+            android:id="@+id/roomservice"
             android:layout_width="match_parent"
+            android:focusable="false"
+            android:longClickable="false"
             android:layout_height="60dp"
             android:background="@color/white"
             android:layout_marginLeft="10dp"
             android:gravity="left"
-            android:text="wifi，洗衣机,"
+            android:text=""
             android:textSize="14sp"/>
         <TextView
             android:layout_width="match_parent"
@@ -175,12 +194,15 @@
             android:textSize="14sp"
             android:text="地理位置："/>
         <EditText
+            android:id="@+id/roomaddress"
+            android:focusable="false"
+            android:longClickable="false"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@color/white"
             android:layout_marginLeft="10dp"
             android:gravity="left"
-            android:text="天津市北辰区河北工业大学5340号"
+            android:text=""
             android:textSize="14sp"/>
         <TextView
             android:layout_width="match_parent"
@@ -193,12 +215,15 @@
             android:layout_marginLeft="10dp"
             android:text="入住须知："/>
         <EditText
+            android:focusable="false"
+            android:longClickable="false"
+            android:id="@+id/roomtip"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@color/white"
             android:layout_marginLeft="10dp"
             android:gravity="left"
-            android:text="入住时需要48小时内核酸检测报告"
+            android:text=""
             android:textSize="14sp"/>
         <TextView
             android:layout_width="match_parent"
@@ -211,6 +236,15 @@
             android:gravity="center"
             android:orientation="horizontal">
             <Button
+                android:id="@+id/modification5"
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:text="修 改"/>
+            <TextView
+                android:layout_width="20dp"
+                android:layout_height="match_parent"/>
+            <Button
+                android:id="@+id/save5"
                 android:layout_width="100dp"
                 android:layout_height="60dp"
                 android:text="保 存"/>
@@ -218,16 +252,10 @@
                 android:layout_width="20dp"
                 android:layout_height="match_parent"/>
             <Button
+                android:id="@+id/delete5"
                 android:layout_width="100dp"
                 android:layout_height="60dp"
-                android:text="保 存"/>
-            <TextView
-                android:layout_width="20dp"
-                android:layout_height="match_parent"/>
-            <Button
-                android:layout_width="100dp"
-                android:layout_height="60dp"
-                android:text="保 存"/>
+                android:text="删 除"/>
 
         </LinearLayout>
     </LinearLayout>
