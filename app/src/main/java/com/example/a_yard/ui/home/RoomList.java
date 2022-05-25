@@ -4,6 +4,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -16,6 +17,20 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.amap.api.maps.AMap;
+import com.amap.api.maps.CameraUpdateFactory;
+import com.amap.api.maps.MapView;
+import com.amap.api.maps.MapsInitializer;
+import com.amap.api.maps.model.LatLng;
+import com.amap.api.maps.model.MarkerOptions;
+import com.amap.api.services.core.AMapException;
+import com.amap.api.services.core.LatLonPoint;
+import com.amap.api.services.core.PoiItem;
+import com.amap.api.services.help.Inputtips;
+import com.amap.api.services.help.InputtipsQuery;
+import com.amap.api.services.help.Tip;
+import com.amap.api.services.poisearch.PoiResult;
+import com.amap.api.services.poisearch.PoiSearch;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
@@ -28,6 +43,7 @@ import com.example.a_yard.data.Apartment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import okhttp3.Response;
 import okhttp3.ResponseBody;
@@ -36,6 +52,7 @@ public class RoomList extends AppCompatActivity {
     private ImageButton roomphoto;
     private EditText roomname,roomid,roomtupe,roomlivein,roomprice,roombed,roomservice,roomaddress,roomtip;
     private Button modification5,save5,delete5;
+    private MapView mMapView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,7 +94,6 @@ public class RoomList extends AppCompatActivity {
         roomprice=findViewById(R.id.roomprice);
         roombed=findViewById(R.id.roombed);
         roomservice=findViewById(R.id.roomservice);
-        roomaddress=findViewById(R.id.roomaddress);
         roomtip=findViewById(R.id.roomtip);
         modification5=findViewById(R.id.modification5);
         save5=findViewById(R.id.save5);
@@ -91,7 +107,7 @@ public class RoomList extends AppCompatActivity {
         roombed.setText(String.valueOf(info.get("b_type")));
         roomservice.setText(String.valueOf(info.get("facility")));
         roomtip.setText(String.valueOf(info.get("a_notes")));
-        roomaddress.setText("天津市北辰区双口镇5340号");
+
         Glide.with(roomphoto)
                 .load(String.valueOf(info.get("a_photo")))
                 .thumbnail(Glide.with(roomphoto).load(R.drawable.icon_downloading))
@@ -127,6 +143,76 @@ public class RoomList extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"修改成功",Toast.LENGTH_SHORT).show();
             }
         });
+
+        //map
+        //授权
+        requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_BACKGROUND_LOCATION,
+                Manifest.permission.ACCESS_NETWORK_STATE
+        }, 100);
+        //map
+        MapsInitializer.updatePrivacyShow(this,true,true);
+        MapsInitializer.updatePrivacyAgree(this,true);
+        mMapView = findViewById(R.id.map);
+        mMapView.onCreate(savedInstanceState);
+        AMap aMap = mMapView.getMap();
+        //搜索
+        PoiSearch.Query query = new PoiSearch.Query("天津大学", "","022");
+        query.setPageSize(5);
+        try {
+            PoiSearch poiSearch = new PoiSearch(this,query);
+            poiSearch.setOnPoiSearchListener(new PoiSearch.OnPoiSearchListener() {
+                @Override
+                public void onPoiSearched(PoiResult poiResult, int i) {
+                    ArrayList<PoiItem>items = poiResult.getPois();
+                    LatLonPoint position = items.get(0).getLatLonPoint();
+                    LatLng latLng = new LatLng(position.getLatitude(),position.getLongitude());
+                    aMap.moveCamera(CameraUpdateFactory.zoomTo(17));
+                    aMap.moveCamera(CameraUpdateFactory.changeLatLng(latLng));
+                    aMap.addMarker(new MarkerOptions().position(latLng).snippet("DefaultMarker"));
+
+                }
+                @Override
+                public void onPoiItemSearched(PoiItem poiItem, int i) {
+
+                }
+            });
+            poiSearch.searchPOIAsyn();
+        } catch (AMapException e) {
+            e.printStackTrace();
+        }
+//        InputtipsQuery inputtipsQuery = new InputtipsQuery("河北工业大学","022");
+//        Inputtips inputtips = new Inputtips(this,inputtipsQuery);
+//        inputtips.setInputtipsListener(new Inputtips.InputtipsListener() {
+//            @Override
+//            public void onGetInputtips(List<Tip> list, int i) {
+//                List<Tip> view = list;
+//
+//            }
+//        });
+//        inputtips.requestInputtipsAsyn();
+        //设置定位
+//        try {
+//            AMapLocationClient aMapLocationClient = new AMapLocationClient(this);
+//            AMapLocationClientOption aMapLocationClientOption = new AMapLocationClientOption()
+//                    .setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy)
+//                    .setOnceLocation(true)
+//                    .setNeedAddress(true)
+//                    .setMockEnable(false);
+//            aMapLocationClient.setLocationOption(aMapLocationClientOption);
+//            aMapLocationClient.setLocationListener(new AMapLocationListener() {
+//                @Override
+//                public void onLocationChanged(AMapLocation aMapLocation) {
+//                    LatLng latLng = new LatLng(aMapLocation.getLatitude(),aMapLocation.getLongitude());
+//                    aMap.moveCamera(CameraUpdateFactory.zoomTo(17));
+//                    aMap.moveCamera(CameraUpdateFactory.changeLatLng(latLng));
+//                    aMap.addMarker(new MarkerOptions().position(latLng).snippet("DefaultMarker"));
+//                }
+//            });
+//            aMapLocationClient.startLocation();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
     //返回
     @Override
