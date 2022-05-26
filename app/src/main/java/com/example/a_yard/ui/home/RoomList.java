@@ -50,7 +50,7 @@ import okhttp3.ResponseBody;
 
 public class RoomList extends AppCompatActivity {
     private ImageButton roomphoto;
-    private EditText roomname,roomid,roomtupe,roomlivein,roomprice,roombed,roomservice,roomaddress,roomtip;
+    private EditText roomname,roomid,roomtupe,roomlivein,roomprice,roombed,roomservice,roomtip;
     private Button modification5,save5,delete5;
     private MapView mMapView;
     @Override
@@ -124,7 +124,6 @@ public class RoomList extends AppCompatActivity {
                 setCanEdit(roombed);
                 setCanEdit(roomservice);
                 setCanEdit(roomtip);
-                setCanEdit(roomaddress);
             }
         });
         //保存
@@ -139,7 +138,6 @@ public class RoomList extends AppCompatActivity {
                 setCanEdit2(roombed);
                 setCanEdit2(roomservice);
                 setCanEdit2(roomtip);
-                setCanEdit2(roomaddress);
                 Toast.makeText(getApplicationContext(),"修改成功",Toast.LENGTH_SHORT).show();
             }
         });
@@ -157,7 +155,7 @@ public class RoomList extends AppCompatActivity {
         mMapView.onCreate(savedInstanceState);
         AMap aMap = mMapView.getMap();
         //搜索
-        PoiSearch.Query query = new PoiSearch.Query("天津大学", "","022");
+        PoiSearch.Query query = new PoiSearch.Query("河北工业大学", "","022");
         query.setPageSize(5);
         try {
             PoiSearch poiSearch = new PoiSearch(this,query);
@@ -181,38 +179,6 @@ public class RoomList extends AppCompatActivity {
         } catch (AMapException e) {
             e.printStackTrace();
         }
-//        InputtipsQuery inputtipsQuery = new InputtipsQuery("河北工业大学","022");
-//        Inputtips inputtips = new Inputtips(this,inputtipsQuery);
-//        inputtips.setInputtipsListener(new Inputtips.InputtipsListener() {
-//            @Override
-//            public void onGetInputtips(List<Tip> list, int i) {
-//                List<Tip> view = list;
-//
-//            }
-//        });
-//        inputtips.requestInputtipsAsyn();
-        //设置定位
-//        try {
-//            AMapLocationClient aMapLocationClient = new AMapLocationClient(this);
-//            AMapLocationClientOption aMapLocationClientOption = new AMapLocationClientOption()
-//                    .setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy)
-//                    .setOnceLocation(true)
-//                    .setNeedAddress(true)
-//                    .setMockEnable(false);
-//            aMapLocationClient.setLocationOption(aMapLocationClientOption);
-//            aMapLocationClient.setLocationListener(new AMapLocationListener() {
-//                @Override
-//                public void onLocationChanged(AMapLocation aMapLocation) {
-//                    LatLng latLng = new LatLng(aMapLocation.getLatitude(),aMapLocation.getLongitude());
-//                    aMap.moveCamera(CameraUpdateFactory.zoomTo(17));
-//                    aMap.moveCamera(CameraUpdateFactory.changeLatLng(latLng));
-//                    aMap.addMarker(new MarkerOptions().position(latLng).snippet("DefaultMarker"));
-//                }
-//            });
-//            aMapLocationClient.startLocation();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
     }
     //返回
     @Override
